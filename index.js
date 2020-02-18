@@ -3,11 +3,15 @@ const app = express();
 const bodyParser = require("body-parser");
 const session = require("express-session");
 
+
+//Import Router
+const PlansRouter = require("./routes/PlansRouter")
+
 // View engine
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
 
 app.use(session({
-    secret: "qualquercoisa", cookie: { maxAge: 30000000},
+    secret: "qualquercoisa", cookie: { maxAge: 30000000 },
     saveUninitialized: true,
     resave: true
 }))
@@ -15,15 +19,17 @@ app.use(session({
 app.use(express.static('public'));
 
 //Body parser
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
 // Router
+app.use("/", PlansRouter)
 
-    app.get("/", (req, res) => {
-        res.render("index.ejs");
-    })
+// Router Principal    
+
+app.get("/", (req, res) => {
+    res.render("index.ejs");
+})
 
 // End Router
 app.listen(3000, () => {
