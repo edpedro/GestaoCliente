@@ -1,0 +1,51 @@
+<%- include ("../partials/header.ejs") %>
+<%- include ("../partials/homenavbar.ejs") %>
+
+<body>
+    <div class="container">
+        <h2 class="mt-5">Editar plano</h2>
+        <hr>
+        <form action="/plans/update" method="POST">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Pano</h4>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" name="id" value="<%= plan.id %>">
+                    <input type="text" name="title" class="form-control" value="<%= plan.title %>"><br>
+                    <% if(title_msg.length > 0){ %>
+                    <div class="alert alert-danger"><%= title_msg %></div>
+                    <% } %>
+                    <input type="text" name="list" class="form-control" value="<%= plan.list %>"><br>
+                    <% if(list_msg.length > 0){ %>
+                    <div class="alert alert-danger"><%= list_msg %></div>
+                    <% } %>
+                    <input type="text" name="client" class="form-control" value="<%= plan.client %>"><br>
+                    <% if(client_msg.length > 0){ %>
+                    <div class="alert alert-danger"><%= client_msg %></div>
+                    <% } %>
+                    <input type="text" name="value" class="form-control" value="<%= plan.value %>"><br>
+                    <% if(value_msg.length > 0){ %>
+                    <div class="alert alert-danger"><%= value_msg %></div>
+                    <% } %>
+                    <hr>
+                    Permite importação de lista:
+                    <% if(plan.import){ %>
+                        <input type="checkbox" name="imports" id="import" checked>
+                    <%}else{ %>
+                        <input type="checkbox" name="imports" id="import">
+                    <%} %>    
+                     
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success btn-block">Editar</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+<%- include ("../partials/footer.ejs") %>

@@ -15,6 +15,40 @@ class PlansService {
         }
     }
 
+    //Listar pelo id do planos
+    async getById(id) {
+        try {
+            return await this.Plan.findByPk(id)
+        } catch (error) {
+            return error
+        }
+    }
+
+    //Atualizar plano
+    async update(id, data) {
+        //Tratar erros
+        var errors = {}
+        //Trarar validacaos
+        var isValid = this.validate(data, errors)
+
+        if (isValid) {
+            try {
+                var plan = await this.getById(id)
+                plan.title = data.title
+                plan.list = data.list
+                plan.client = data.client
+                plan.value = data.value
+                await plan.save()
+                return true
+            } catch (err) {
+                errors.system_msg = "Não foi possivel editar o plano"
+                return errors
+            }
+        } else {
+            return errors
+        }
+    }
+
     //salvar planos no banco
     async store(plans) {
         //Tratar erros
