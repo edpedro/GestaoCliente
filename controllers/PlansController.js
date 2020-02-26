@@ -1,11 +1,16 @@
 const PlansService = require("../services/PlansService")
 class PlansController {
 
-    index(req, res) {
-        res.render("plans")
-    }
+    async index(req, res) {
+        var lists = await PlansService.getAll()
+        res.render("plans/index", { lists })
+    }  
+
     create(req, res) {
-        res.render("plans/create", { title_msg: req.flash("title_msg"), list_msg: req.flash("list_msg") })
+        res.render("plans/create", {
+            title_msg: req.flash("title_msg"), list_msg: req.flash("list_msg"),
+            client_msg: req.flash("client_msg"), value_msg: req.flash("value_msg")
+        })
     }
     async store(req, res) {
         var { title, list, client, value, imports } = req.body
@@ -24,6 +29,8 @@ class PlansController {
         } else {
             req.flash("title_msg", result.title_msg)
             req.flash("list_msg", result.list_msg)
+            req.flash("client_msg", result.client_msg)
+            req.flash("value_msg", result.value_msg)
             res.redirect("/admin/plans/create")
         }
     }

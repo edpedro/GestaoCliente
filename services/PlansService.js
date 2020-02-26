@@ -5,6 +5,16 @@ class PlansService {
     constructor() {
         this.Plan = Database["Plan"]
     }
+
+    //Listar todos planos
+    async getAll() {
+        try {
+            return await this.Plan.findAll()
+        } catch (error) {
+            return error
+        }
+    }
+
     //salvar planos no banco
     async store(plans) {
         //Tratar erros
@@ -48,7 +58,25 @@ class PlansService {
             erroCount++
         } else {
             if (plan.list < 1) {
-                errors.list_msg = "Quantidade de listar invalido"
+                errors.list_msg = "Quantidade de lista invalido"
+                erroCount++
+            }
+        }
+        if (plan.client == undefined) {
+            errors.client_msg = "Favor preencher dados!"
+            erroCount++
+        } else {
+            if (plan.client < 1) {
+                errors.client_msg = "Quantidade de cliente invalido"
+                erroCount++
+            }
+        }
+        if (plan.value == undefined) {
+            errors.value_msg = "Favor preencher dados!"
+            erroCount++
+        } else {
+            if (plan.value < 1) {
+                errors.value_msg = "Preço não poder ser menor quer R$0"
                 erroCount++
             }
         }

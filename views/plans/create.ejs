@@ -20,7 +20,13 @@
                     <div class="alert alert-danger"><%= list_msg %></div>
                     <% } %>
                     <input type="text" name="client" class="form-control" placeholder="Nº de clientes"><br>
+                    <% if(client_msg.length > 0){ %>
+                    <div class="alert alert-danger"><%= client_msg %></div>
+                    <% } %>
                     <input type="text" name="value" class="form-control" placeholder="Valor"><br>
+                    <% if(value_msg.length > 0){ %>
+                    <div class="alert alert-danger"><%= value_msg %></div>
+                    <% } %>
                     <hr>
                     Permite importação de lista: <input type="checkbox" name="imports" id="import">
                 </div>
