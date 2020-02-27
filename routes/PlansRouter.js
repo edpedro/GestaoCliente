@@ -3,6 +3,7 @@ const router = express.Router()
 const PlansController = require("../controllers/PlansController")
 
 router.get("/admin/plans", PlansController.index)
+router.get("/plans/deactivated/:id", PlansController.deactivated)
 router.get("/admin/plans/create", PlansController.create)
 router.post("/plans/update", PlansController.update)
 router.post("/plans/store", PlansController.store)

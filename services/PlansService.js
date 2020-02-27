@@ -23,6 +23,17 @@ class PlansService {
             return error
         }
     }
+    async deactivated(id) {
+        try {
+            var plan = await this.getById(id)
+            plan.deactivated = true
+            await plan.save()
+            return true
+        } catch (error) {
+            return false
+        }
+
+    }
 
     //Atualizar plano
     async update(id, data) {

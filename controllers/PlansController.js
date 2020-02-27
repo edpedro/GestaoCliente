@@ -64,6 +64,11 @@ class PlansController {
             res.redirect("/admin/plans/create")
         }
     }
+    async deactivated(req, res){
+        var id = req.params.id;
+        await PlansService.deactivated(id)
+        res.redirect("/admin/plans")
+    }
 }
 
 module.exports = new PlansController()

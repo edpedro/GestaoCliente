@@ -10,7 +10,9 @@
                 <tr>
                     <th scope="col">id</th>
                     <th scope="col">Nome</th>
-                    <th scope="col">Preço</th>                   
+                    <th scope="col">Preço</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Ações</th>                     
                 </tr>
             </thead>
             <tbody>
@@ -18,7 +20,9 @@
                 <tr>
                     <td><%=list.id %></td>
                     <td><%=list.title %></td>
-                    <td>R$<%=list.value %></td>                                      
+                    <td>R$<%=list.value %></td>
+                    <td><%=list.deactivated %></td>
+                    <td><a href="/plans/deactivated/<%=list.id %> ">Desativado</a></td>                                      
                 </tr>    
                    <% }); %>
             </tbody>
