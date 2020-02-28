@@ -38,7 +38,7 @@ class PlansController {
             req.flash("list_msg", result.list_msg)
             req.flash("client_msg", result.client_msg)
             req.flash("value_msg", result.value_msg)
-            res.redirect("/admin/plans/edit/" + id)
+            res.redirect("/plans/edit/" + id)
         }
     }
 
@@ -67,6 +67,11 @@ class PlansController {
     async deactivated(req, res){
         var id = req.params.id;
         await PlansService.deactivated(id)
+        res.redirect("/admin/plans")
+    }
+    async active(req, res){
+        var id = req.params.id
+        await PlansService.active(id)
         res.redirect("/admin/plans")
     }
 }

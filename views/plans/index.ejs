@@ -11,8 +11,9 @@
                     <th scope="col">id</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preço</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Ações</th>                     
+                    <th scope="col">Plano</th>
+                    <th scope="col">Ações</th>
+                    <th scope="col">Editar plano</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,10 +22,22 @@
                     <td><%=list.id %></td>
                     <td><%=list.title %></td>
                     <td>R$<%=list.value %></td>
-                    <td><%=list.deactivated %></td>
-                    <td><a href="/plans/deactivated/<%=list.id %> ">Desativado</a></td>                                      
-                </tr>    
-                   <% }); %>
+                    <td>
+                        <% if (list.deactivated) { %>
+                        Desativado
+                        <% }else{ %>
+                        Ativado
+                        <%} %>
+                    </td>
+                    <td><a href="/plans/deactivated/<%=list.id %>" class="btn btn-info btn-sm"> <span
+                                class="glyphicon glyphicon-edit">Desativar</span></a> <a
+                            href="/plans/active/<%=list.id %>" class="btn btn-info btn-sm"> <span
+                                class="glyphicon glyphicon-edit">Ativar</span></a></td>
+                    <td><a href="/plans/edit/<%=list.id %>" class="btn btn-info btn-sm">
+                            <span class="glyphicon glyphicon-edit">Editar</span>
+                        </a></td>
+                </tr>
+                <% }); %>
             </tbody>
         </table>
     </div>
